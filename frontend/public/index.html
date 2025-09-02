@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta
+      name="description"
+      content="Company Lookup & SEC Filings Dashboard - Search for company information, stock prices, and SEC filings in one place."
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Preconnect to external domains for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Inter font for professional typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Fira Code font for code/monospace text -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <title>Company Lookup Dashboard</title>
+    
+    <!-- Prevent FOUC (Flash of Unstyled Content) -->
+    <style>
+      html {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      }
+      
+      /* Loading spinner styles */
+      .loading-spinner {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Initial loading screen */
+      #initial-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        flex-direction: column;
+      }
+      
+      #initial-loader .logo {
+        width: 64px;
+        height: 64px;
+        background: #3b82f6;
+        border-radius: 12px;
+        margin-bottom: 24px;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      #initial-loader .logo::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 32px;
+        height: 32px;
+        background: white;
+        border-radius: 6px;
+      }
+      
+      #initial-loader .text {
+        color: #64748b;
+        font-weight: 500;
+        margin-bottom: 16px;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <noscript>
+      <div style="padding: 2rem; text-align: center; font-family: system-ui, sans-serif;">
+        <h1>JavaScript Required</h1>
+        <p>This application requires JavaScript to run. Please enable JavaScript in your browser.</p>
+      </div>
+    </noscript>
+    
+    <!-- Initial loading screen -->
+    <div id="initial-loader">
+      <div class="logo"></div>
+      <div class="text">Company Lookup Dashboard</div>
+      <div class="loading-spinner"></div>
+    </div>
+    
+    <div id="root"></div>
+    
+    <!-- Remove loading screen when React loads -->
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          const loader = document.getElementById('initial-loader');
+          if (loader) {
+            loader.style.opacity = '0';
+            loader.style.transition = 'opacity 0.3s ease-out';
+            setTimeout(() => loader.remove(), 300);
+          }
+        }, 100);
+      });
+    </script>
+  </body>
+</html>
